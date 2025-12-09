@@ -1,0 +1,22 @@
+# File di sistema
+.DS_Store
+Thumbs.db
+
+# Cartelle di build/temporanee
+bin/
+build/
+export/
+*.tmp
+
+# File generati da Godot
+.import/
+.export/
+mono_temp/
+.cache/
+
+# Configurazioni locali
+.editor_settings-*.cfg
+*.log
+
+# Documentazione generata automaticamente
+docs/
