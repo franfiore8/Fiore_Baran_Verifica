@@ -26,11 +26,11 @@ L’obiettivo principale è **educare il giocatore alla corretta gestione dei ri
 
 | Tasto      | Azione                               |
 | ---------- | ------------------------------------ |
-| **W**      | Salto                                |
+| **W**      | -----                                |
 | **A**      | Muovi a sinistra                     |
 | **D**      | Muovi a destra                       |
 | **S**      | Interazioni / Azioni (se presenti)   |
-| **Spazio** | Salto (alternativo a W, se previsto) |
+| **Spazio** | Salto                                |
 
 ---
 
