@@ -1,58 +1,46 @@
-⏱️ Inerimento TIMER
+# Feature: Timer di Livello con Countdown
 
-Implementazione di un Timer di gioco visibile nell’interfaccia (HUD)
+## Descrizione
+Implementazione di un **timer di livello** con countdown decrescente visibile in gioco.  
+Il timer parte da **2 minuti (120 secondi)** e, una volta terminato, determina la fine della partita (Game Over).
 
-🎯 Obiettivo
+## Obiettivo
+- Aumentare il senso di urgenza e sfida durante il gameplay  
+- Incoraggiare il giocatore a completare il livello in modo efficiente  
+- Fornire un feedback visivo chiaro e professionale del tempo rimanente  
+- Preparare la base per future meccaniche (es. bonus tempo, classifiche)
 
-Aggiungere un timer che tenga traccia del tempo di gioco durante il livello.
-Il timer deve partire automaticamente all’inizio della partita e deve essere visualizzato sullo schermo.
+## Implementazione tecnica
 
-📝 Descrizione funzionale
+### Architettura scelta
+- **Singleton (AutoLoad)**: `TimerManager.gd` → gestisce la logica del tempo in modo centralizzato  
+- **Scena UI dedicata**: `TimerUI.tscn` → interfaccia pulita e riutilizzabile  
+- Separazione netta tra logica e presentazione (best practice)
 
-All’avvio del livello, il timer inizia da 0 e aumenta ogni secondo (cronometro).
+### Dettagli implementativi
+| Componente                  | Descrizione                                                                 |
+|-----------------------------|-----------------------------------------------------------------------------|
+| `TimerManager.gd`           | Singleton con segnali `time_changed` e `timer_finished`                    |
+| Tempo iniziale              | 120 secondi (configurabile tramite `@export var starting_time`)            |
+| Aggiornamento               | Basato su `_process(delta)` per precisione al frame                         |
+| Formato visualizzato        | `MM:SS` (es. `01:47`) con zero padding                                      |
+| Comportamento a zero        | Emissione segnale `timer_finished` → Game Over                              |
+| Effetti visivi              | Testo diventa rosso/arancione quando rimangono meno di 20 secondi         |
 
-Il tempo deve essere mostrato in un elemento grafico dell’interfaccia (un Label).
+## Interfaccia utente
+- Posizione: angolo **in alto a sinistra**  
+- Testo: `02:00` → `01:23` → `00:05` → `00:00` (rosso)  
+- Stile: font grande, contrasto elevato, animazione colore negli ultimi secondi
 
-Il timer deve rimanere aggiornato per tutta la durata del livello.
+## Test effettuati
+- Il timer parte correttamente all'avvio del livello  
+- Il formato è sempre `MM:SS` con due cifre  
+- Il segnale `timer_finished` viene emesso esattamente a 0.00  
+- Il gioco si blocca e mostra schermata Game Over  
+- Funziona correttamente su diversi frame rate
 
-Il tempo finale potrà essere usato in futuro per statistiche, punteggio o classifiche.
-
-📍 Dettagli tecnici
-
-Aggiungere un nodo Timer nella scena principale del gioco (es. Main.tscn).
-
-Impostare il Timer su autostart = true e wait_time = 1 (un secondo).
-
-Collegare il segnale timeout() del Timer a uno script che aggiornerà il tempo trascorso.
-
-Creare una variabile che mantiene il tempo totale, ad esempio:
-
-var elapsed_time = 0
-
-
-Ogni volta che il timer va in timeout:
-
-elapsed_time += 1
-hud.update_timer(elapsed_time)
-
-
-Aggiungere nell’HUD un Label chiamato ad esempio:
-"TimerLabel"
-
-🗂️ File coinvolti
-
-scenes/Main.tscn → aggiunta del nodo Timer
-
-scripts/main.gd → logica incrementale del tempo
-
-scenes/HUD.tscn → aggiunta del Label del timer
-
-scripts/hud.gd → funzione per aggiornare il testo del timer
-
-✔️ Criteri di completamento
-
-Il timer appare visibile nell’interfaccia di gioco.
-
-Il tempo aumenta correttamente ogni secondo.
-
-Non si resetta finché non viene ricaricato il livello.
+## Possibili estensioni future
+- Bonus tempo (+10s, +20s) raccogliendo oggetti speciali  
+- Record del tempo migliore (salvataggio locale)  
+- Livelli con tempi diversi  
+- Modalità "Speedrun"
