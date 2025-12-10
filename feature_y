@@ -1,0 +1,51 @@
+💰 Caratteristica: Sistema di Punteggio per Raccolta Rifiuti 🗑️
+Descrizione:
+
+Implementazione di un sistema di punteggio che premia il giocatore per raccogliere e smaltire correttamente i rifiuti nei bidoni. 
+Ogni volta che il giocatore raccoglie un sacco, guadagna punti, e ulteriori punti vengono assegnati quando il sacco viene smaltito correttamente nel bidone. 
+L'obiettivo è incentivare il giocatore a raccogliere e smaltire più rifiuti nel minor tempo possibile, aumentando la sfida e l'engagement.
+
+🎯 Obiettivo:
+
+| **Obiettivo**                                  | **Descrizione**                                                                                                                                                             |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Premiare la Raccolta di Rifiuti**            | Ogni sacco raccolto incrementa il punteggio del giocatore.                                                                                                                  |
+| **Premiare lo Smaltimento Corretto**           | Ulteriori punti vengono assegnati quando il sacco viene smaltito nel bidone corretto (ad esempio, sacco blu nel bidone blu).                                                |
+| **Aumentare la Sfida**                         | L'assegnazione dei punti incoraggia il giocatore a raccogliere e smaltire i rifiuti in modo efficiente, aumentando la competizione e la velocità nel completare il livello. |
+| **Feedback Visivo e Uditivo**                  | Fornire un feedback immediato per ogni azione di raccolta e smaltimento, rafforzando l'esperienza di gioco.                                                                 |
+| **Preparare il terreno per Estensioni Future** | Creare la base per future funzionalità come classifiche di punteggio e salvataggio dei record.                                                                              |
+
+📋 Dettagli Implementativi:
+
+| **Componente**              | **Descrizione**                                                                                                                                                           |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Globali.gd**              | Script di tipo **Singleton (AutoLoad)** che contiene variabili globali come `Score`, `NumeroR` (sacco raccolto) e `BidoneB`. Gestisce i dati di gioco.                    |
+| **Incremento Punteggio**    | Ogni volta che un sacco viene raccolto o smaltito correttamente, il punteggio viene incrementato: **10 punti** per la raccolta, **20 punti** per il corretto smaltimento. |
+| **Aggiornamento Punteggio** | La **Label dello Score** viene aggiornata in tempo reale durante il gioco ogni volta che il punteggio cambia.                                                             |
+| **Feedback Visivo**         | Il punteggio viene mostrato tramite un testo in **HUD**, che viene aggiornato con una transizione visibile ogni volta che il punteggio cambia.                            |
+
+🖼️ Interfaccia Utente:
+
+| **Posizione**               | **Descrizione**                                                                                                                                                                 |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Posizione del Punteggio** | Il punteggio è visibile nell'angolo in alto a destra della schermata, per permettere al giocatore di vedere facilmente il suo progresso.                                        |
+| **Formato del Punteggio**   | Il punteggio viene visualizzato in formato "Score: X", dove "X" è il valore del punteggio.                                                                                      |
+| **Stile del Punteggio**     | Font grande e facilmente leggibile con alto contrasto. Il colore del punteggio potrebbe essere modificato per migliorare la visibilità, specialmente se il punteggio è elevato. |
+
+✅ Test Effettuati:
+
+| **Test**                          | **Descrizione**                                                                                                          |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Incremento del Punteggio**      | Il punteggio aumenta correttamente di **10 punti** per ogni sacco raccolto e **20 punti** per ogni smaltimento corretto. |
+| **Aggiornamento della Label**     | La **Label dello Score** viene aggiornata correttamente in tempo reale con il nuovo punteggio.                           |
+| **Visualizzazione del Punteggio** | Il punteggio viene visualizzato correttamente nell'interfaccia utente.                                                   |
+| **Compatibilità Frame Rate**      | Il sistema di punteggio funziona correttamente indipendentemente dal frame rate del gioco.                               |
+
+🚀 Possibili Estensioni Future:
+
+| **Funzionalità**                        | **Descrizione**                                                                                                  |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Classifiche e Salvataggio dei Tempi** | Creazione di **classifiche** locali e online, in modo da confrontare i punteggi migliori dei giocatori.          |
+| **Bonus Punti**                         | Oggetti speciali che il giocatore può raccogliere per guadagnare **bonus punti** (ad esempio +50 punti).         |
+| **Livelli con Difficoltà Variabile**    | Aggiungere livelli che premiano **punteggi più alti** in base alla difficoltà del livello.                       |
+| **Modalità Competitiva**                | Modalità di gioco dove il punteggio viene confrontato in tempo reale con altri giocatori o con i record storici. |
