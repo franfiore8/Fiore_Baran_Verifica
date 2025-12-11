@@ -21,10 +21,6 @@ UI:
 Scena dedicata: TimerUI.tscn
 La scena UI mostra il timer sullo schermo. È progettata per essere semplice e facilmente riutilizzabile.
 
-Separazione tra Logica e Presentazione:
-
-Il codice è progettato separando la logica (gestione del timer) dalla presentazione (visualizzazione nell'interfaccia utente). Questo approccio permette di mantenere il codice pulito e gestibile.
-
 📋 Dettagli Implementativi:
 | **Componente**                | **Descrizione**                                                                                                                                                       |
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
