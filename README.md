@@ -1,4 +1,4 @@
-# Fiore_Baran_Verifica
+# Fiore_Verifica
 Verifica laboratiorio GPO Documentazione di un progetto
 
 # 🌿 **GreenPixel**
