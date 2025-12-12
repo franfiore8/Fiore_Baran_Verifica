@@ -1,4 +1,3 @@
-# 🚀 Fiore_Verifica: Progetto GPO 2 Lab - Documentazione & Sviluppo Collaborativo
 
 # 🌿 GreenPixel: L'Eco-Avventura Verticale!
 
