@@ -1,0 +1,189 @@
+# 💰 Sistema di Punteggio per Raccolta Rifiuti
+
+**Progetto:** GreenPixel - Platform Educativo sulla Raccolta Differenziata  
+**Versione:** 1.0.0  
+**Engine:** Godot 4.x  
+
+---
+
+## 📋 Sommario
+
+Il Sistema di Punteggio è la meccanica principale che guida l'esperienza di gioco in GreenPixel. Premia il giocatore per la raccolta dei rifiuti sparsi nel livello e per il loro corretto smaltimento nei bidoni della raccolta differenziata, trasformando un'azione educativa in un'esperienza di gioco coinvolgente e gratificante.
+
+---
+
+## 🎯 Obiettivo della Funzionalità
+
+| Obiettivo | Descrizione |
+|-----------|-------------|
+| **Incentivare la Raccolta** | Ogni sacco di rifiuti raccolto dal giocatore viene ricompensato con **+10 punti**, incoraggiando l'esplorazione del livello e la pulizia dell'ambiente di gioco. |
+| **Premiare lo Smaltimento Corretto** | Il deposito di un sacco nel bidone del colore corrispondente assegna **+20 punti**, insegnando al giocatore l'importanza della corretta differenziazione dei materiali. |
+| **Creare Engagement** | Il punteggio crescente crea un ciclo di gioco gratificante che motiva il giocatore a migliorare le proprie prestazioni ad ogni partita. |
+| **Educare Attraverso il Gameplay** | L'associazione colore-materiale viene appresa naturalmente durante il gioco: Rosso = Plastica/Metalli, Giallo = Carta/Cartone, Blu = Vetro. |
+
+---
+
+## 🏆 Sistema di Assegnazione Punti
+
+### Tabella Punti Completa
+
+| Azione | Punti | Condizione | Effetto sulle Variabili |
+|--------|:-----:|------------|------------------------|
+| Raccogliere sacco **ROSSO** | **+10** | Toccare il sacco | `NumeroR += 1`, `Score += 10`, sacco rimosso |
+| Raccogliere sacco **GIALLO** | **+10** | Toccare il sacco | `NumeroG += 1`, `Score += 10`, sacco rimosso |
+| Raccogliere sacco **BLU** | **+10** | Toccare il sacco | `NumeroB += 1`, `Score += 10`, sacco rimosso |
+| Depositare nel bidone **ROSSO** | **+20** | Avere almeno 1 sacco rosso | `NumeroR -= 1`, `BidoneR += 1`, `Score += 20` |
+| Depositare nel bidone **GIALLO** | **+20** | Avere almeno 1 sacco giallo | `NumeroG -= 1`, `BidoneG += 1`, `Score += 20` |
+| Depositare nel bidone **BLU** | **+20** | Avere almeno 1 sacco blu | `NumeroB -= 1`, `BidoneB += 1`, `Score += 20` |
+| Passare sul bidone senza sacchi | **0** | Nessun sacco del colore | Nessuna modifica |
+| Restare fermo nel bidone | **0** | Già depositato in questo ingresso | Nessuna modifica |
+
+### Formula di Calcolo
+
+```
+PUNTEGGIO TOTALE = (Sacchi Raccolti × 10) + (Depositi Corretti × 20)
+```
+
+### Esempio Pratico
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│  ESEMPIO: Partita con 5 sacchi rossi e 3 sacchi blu           │
+├────────────────────────────────────────────────────────────────┤
+│                                                                │
+│  FASE RACCOLTA:                                                │
+│  • 5 sacchi rossi raccolti    →  5 × 10 = 50 punti            │
+│  • 3 sacchi blu raccolti      →  3 × 10 = 30 punti            │
+│                                  ─────────────────             │
+│                         Subtotale:  80 punti                   │
+│                                                                │
+│  FASE DEPOSITO:                                                │
+│  • 5 sacchi nel bidone rosso  →  5 × 20 = 100 punti           │
+│  • 3 sacchi nel bidone blu    →  3 × 20 = 60 punti            │
+│                                  ─────────────────             │
+│                         Subtotale: 160 punti                   │
+│                                                                │
+│  ══════════════════════════════════════════════════            │
+│  PUNTEGGIO FINALE:                240 punti                    │
+│  ══════════════════════════════════════════════════            │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🔄 Flusso di Funzionamento
+
+### Raccolta Sacco
+
+```
+Player tocca sacco  →  È nel gruppo "player"?  →  NO  →  Ignora
+                              │
+                             SÌ
+                              ↓
+                    Numero[Colore] += 1
+                              ↓
+                       Score += 10
+                              ↓
+                   Sacco rimosso (queue_free)
+                              ↓
+                    UI aggiornata automaticamente
+```
+
+### Deposito nel Bidone
+
+```
+Player entra nel bidone  →  È nel gruppo "player"?  →  NO  →  Ignora
+                                    │
+                                   SÌ
+                                    ↓
+                          Ha già depositato?  →  SÌ  →  Ignora
+                                    │
+                                   NO
+                                    ↓
+                          Ha sacchi del colore?  →  NO  →  Ignora (0 punti)
+                                    │
+                                   SÌ
+                                    ↓
+                          Numero[Colore] -= 1
+                          Bidone[Colore] += 1
+                          Score += 20
+                          ha_depositato = true
+                                    ↓
+                          UI aggiornata automaticamente
+
+
+Player esce dal bidone  →  ha_depositato = false  (pronto per nuovo deposito)
+```
+
+---
+
+## 🖥️ Interfaccia Utente
+
+### Layout HUD
+
+```
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│  TIMER: 02:35            SCORE: 240                    SACCHI: 🔴 2  🟡 1  🔵 0     │
+│                                                         BIDONI: 🔴 5  🟡 3  🔵 2    │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                      │
+│                                                                                      │          
+│                                                                                      │
+│                              AREA DI GIOCO                                           │
+│                                                                                      │
+│                                                                                      │
+│                                                                                      │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Elementi UI
+
+| Elemento | Posizione | Formato | Aggiornamento |
+|----------|-----------|---------|---------------|
+| **Score** | Alto a sinistra | `SCORE: [numero]` | Ogni frame |
+| **Timer** | Centro | `TIMER: MM:SS` | Ogni secondo |
+| **Contatori Sacchi** | Alto a destra | Icona + numero per colore | Ogni frame |
+| **Contatori Bidoni** | Alto a destra | Icona + numero per colore | Ogni frame |
+
+---
+
+## ✅ Test Effettuati
+
+| Test | Descrizione | Risultato |
+|------|-------------|:---------:|
+| Raccolta sacchi | Ogni colore assegna correttamente +10 punti | ✅ |
+| Deposito corretto | Ogni colore assegna correttamente +20 punti | ✅ |
+| Passaggio senza sacchi | Nessun punto assegnato passando sul bidone vuoti | ✅ |
+| Anti-exploit | Restando nel bidone si deposita solo 1 sacco | ✅ |
+| Reset uscita | Uscendo dal bidone si può depositare nuovamente | ✅ |
+| UI sincronizzata | Score e contatori sempre aggiornati | ✅ |
+| Performance | Nessun impatto su FPS (stabile 60 FPS) | ✅ |
+
+---
+
+## 🚀 Estensioni Future
+
+| Funzionalità | Descrizione | Priorità |
+|--------------|-------------|:--------:|
+| **Feedback Audio** | Suoni per raccolta e deposito con toni diversi per colore | Alta |
+| **Animazione Punti** | Testo "+10" / "+20" fluttuante sopra il personaggio | Alta |
+| **Sistema Combo** | Moltiplicatore per depositi consecutivi (×2, ×3) | Media |
+| **Classifiche Locali** | Salvataggio dei migliori 10 punteggi | Media |
+| **Penalità Errore** | -10 punti per deposito nel bidone sbagliato | Bassa |
+| **Power-up** | Oggetti bonus che raddoppiano i punti temporaneamente | Bassa |
+| **Classifiche Online** | Leaderboard globale tra giocatori | Bassa |
+
+---
+
+## 📊 Bilanciamento
+
+| Aspetto | Scelta | Motivazione |
+|---------|--------|-------------|
+| Rapporto Raccolta/Deposito | 1:2 (10 vs 20) | Il deposito corretto è l'obiettivo educativo, quindi viene premiato maggiormente |
+| Punti uniformi per colore | Stesso valore | Nessuna gerarchia tra tipi di riciclaggio |
+| Assenza di penalità | Solo punti positivi | Esperienza adatta a tutte le età, nessuna frustrazione |
+| Costanti centralizzate | In Globali.gd | Facilità di bilanciamento futuro modificando un solo file |
+
+
+**Documento Tecnico - GreenPixel v1.0**
