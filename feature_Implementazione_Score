@@ -1,0 +1,179 @@
+# 💰 Sistema di Punteggio per Raccolta Rifiuti
+
+![Version](https://img.shields.io/badge/Versione-1.0.0-brightgreen) ![Engine](https://img.shields.io/badge/Engine-Godot_4.x-blue) ![Status](https://img.shields.io/badge/Status-Attivo-success)
+
+**Progetto:** GreenPixel - Platform Educativo sulla Raccolta Differenziata
+
+> 💡 **Concetto Chiave:** Trasformare un'azione educativa come la raccolta differenziata in un'esperienza di gioco coinvolgente e gratificante, premiando il giocatore per l'esplorazione, la pulizia e l'apprendimento delle corrette pratiche di smaltimento.
+
+---
+
+### 📚 Indice
+
+*   [🎯 Obiettivo della Funzionalità](#-obiettivo-della-funzionalità)
+*   [🏆 Sistema di Assegnazione Punti](#-sistema-di-assegnazione-punti)
+*   [🔄 Flusso di Funzionamento](#-flusso-di-funzionamento)
+*   [🖥️ Interfaccia Utente](#️-interfaccia-utente)
+*   [✅ Test Effettuati](#-test-effettuati)
+*   [🚀 Estensioni Future](#-estensioni-future)
+*   [⚖️ Bilanciamento del Gameplay](#️-bilanciamento-del-gameplay)
+
+---
+
+## 🎯 Obiettivo della Funzionalità
+
+Il Sistema di Punteggio è il motore principale che guida l'esperienza di gioco in GreenPixel. È progettato per raggiungere quattro obiettivi fondamentali:
+
+| Obiettivo | Descrizione | Impatto sul Gameplay |
+|:---|:---|:---|
+| **🔍 Incentivare la Raccolta** | Ogni sacco raccolto premia con **+10 punti**. | Spinge il giocatore a esplorare ogni angolo del livello. |
+| **♻️ Premiare lo Smaltimento Corretto** | Il deposito nel bidone giusto assegna **+20 punti**. | Insegna l'importanza della differenziazione in modo attivo. |
+| **🎮 Creare Engagement** | Un punteggio che cresce crea un ciclo gratificante. | Motiva il giocatore a superare il proprio record. |
+| **🧠 Educare Attraverso il Gameplay** | L'associazione colore-materiale è appresa naturalmente. | Il giocatore impara divertendosi, senza lezioni noiose. |
+
+---
+
+## 🏆 Sistema di Assegnazione Punti
+
+Il sistema è basato su due azioni principali, ciascuna con un suo premio. La logica è semplice: **smaltire correttamente vale il doppio della semplice raccolta.**
+
+### Tabella Punti Completa
+
+| Azione | 🏅 Punti | Condizione | Effetto sulle Variabili |
+|:---|:---:|:---|:---|
+| Raccogliere sacco **ROSSO** | `+10` | Toccare il sacco | `NumeroR += 1`, `Score += 10` |
+| Raccogliere sacco **GIALLO** | `+10` | Toccare il sacco | `NumeroG += 1`, `Score += 10` |
+| Raccogliere sacco **BLU** | `+10` | Toccare il sacco | `NumeroB += 1`, `Score += 10` |
+| Depositare nel bidone **ROSSO** | `+20` | Avere `NumeroR > 0` | `NumeroR -= 1`, `BidoneR += 1`, `Score += 20` |
+| Depositare nel bidone **GIALLO** | `+20` | Avere `NumeroG > 0` | `NumeroG -= 1`, `BidoneG += 1`, `Score += 20` |
+| Depositare nel bidone **BLU** | `+20` | Avere `NumeroB > 0` | `NumeroB -= 1`, `BidoneB += 1`, `Score += 20` |
+
+### Formula di Calcolo
+
+```python
+PUNTEGGIO_TOTALE = (Sacchi_Raccolti * 10) + (Depositi_Corretti * 20)
+```
+
+### Esempio Pratico
+
+> **Scenario:** Una partita in cui il giocatore raccoglie 5 sacchi rossi e 3 sacchi blu, depositandoli tutti correttamente.
+>
+> ---
+> **📦 FASE RACCOLTA:**
+> *   5 sacchi rossi raccolti → `5 × 10 = 50 punti`
+> *   3 sacchi blu raccolti → `3 × 10 = 30 punti`
+> *   **Subtotale Raccolta:** `80 punti`
+>
+> **♻️ FASE DEPOSITO:**
+> *   5 sacchi nel bidone rosso → `5 × 20 = 100 punti`
+> *   3 sacchi nel bidone blu → `3 × 20 = 60 punti`
+> *   **Subtotale Deposito:** `160 punti`
+>
+> ---
+> **🏆 PUNTEGGIO FINALE: `240 punti`**
+
+---
+
+## 🔄 Flusso di Funzionamento
+
+Il sistema si basa su due flussi principali: la raccolta e il deposito. Entrambi sono gestiti da aree di trigger (`Area2D`) che rilevano l'ingresso del giocatore.
+
+### Flusso di Raccolta Sacco
+
+```mermaid
+graph TD
+    A[Player tocca il sacco] --> B{È nel gruppo 'player'?};
+    B -- No --> C[Ignora];
+    B -- Sì --> D[Numero[Colore] += 1];
+    D --> E[Score += 10];
+    E --> F[Sacco rimosso (queue_free)];
+    F --> G[UI aggiornata];
+```
+
+### Flusso di Deposito nel Bidone
+
+```mermaid
+graph TD
+    A[Player entra nel bidone] --> B{È nel gruppo 'player'?};
+    B -- No --> C[Ignora];
+    B -- Sì --> D{Ha già depositato in questo ingresso?};
+    D -- Sì --> C;
+    D -- No --> E{Ha sacchi del colore?};
+    E -- No --> F[Assegna 0 punti, ignora];
+    E -- Sì --> G[Numero[Colore] -= 1];
+    G --> H[Bidone[Colore] += 1];
+    H --> I[Score += 20];
+    I --> J[Flag ha_depositato = true];
+    J --> K[UI aggiornata];
+    
+    subgraph "Reset"
+        L[Player esce dal bidone] --> M[ha_depositato = false];
+    end
+```
+
+---
+
+## 🖥️ Interfaccia Utente (HUD)
+
+L'HUD è progettato per essere pulito, informativo e sempre visibile, fornendo al giocatore tutte le informazioni necessarie in tempo reale.
+
+### Layout HUD
+
+```
+┌──────────────────────────────────────────────────────────────────────────────────────┐
+│  TIMER: 02:35            SCORE: 240                    SACCHI: 🔴 2  🟡 1  🔵 0     │
+│                                                         BIDONI: 🔴 5  🟡 3  🔵 2    │
+├──────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                      │
+│                                                                                      │          
+│                              AREA DI GIOCO                                           │
+│                                                                                      │
+│                                                                                      │
+│                                                                                      │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Elementi UI
+
+| Elemento | Posizione | Formato | Aggiornamento |
+|:---|:---|:---|:---|
+| **⏱️ Timer** | Centro | `TIMER: MM:SS` | Ogni secondo |
+| **💰 Score** | Alto a sinistra | `SCORE: [numero]` | Ogni frame |
+| **👜 Contatori Sacchi** | Alto a destra | `Icona + numero` | Ogni frame |
+| **🗑️ Contatori Bidoni** | Alto a destra | `Icona + numero` | Ogni frame |
+
+---
+
+## ✅ Test Effettuati
+
+Ogni aspetto della funzionalità è stato testato per garantire un'esperienza fluida e priva di bug.
+
+| Test | Descrizione | Risultato |
+|:---|:---|:---:|
+| Raccolta sacchi | Verifica assegnazione +10 punti per ogni colore | ✅ Superato |
+| Deposito corretto | Verifica assegnazione +20 punti per ogni colore | ✅ Superato |
+| Passaggio senza sacchi | Nessun punto passando sul bidone vuoti | ✅ Superato |
+| Anti-exploit | Deposito unico per ingresso nel bidone | ✅ Superato |
+| Reset uscita | Possibilità di depositare nuovamente dopo l'uscita | ✅ Superato |
+| Sincronizzazione UI | Score e contatori sempre aggiornati | ✅ Superato |
+| Performance | Nessun impatto su FPS (stabile a 60) | ✅ Superato |
+
+---
+
+## 🚀 Estensioni Future
+
+Il sistema è progettato per essere estensibile. Ecco alcune idee per future implementazioni, suddivise per priorità.
+
+| Funzionalità | Descrizione | Priorità | Sforzo |
+|:---|:---|:---:|:---:|
+| **🔊 Feedback Audio** | Suoni per raccolta e deposito con toni diversi per colore | 🔴 Alta | 🟡 Medio |
+| **✨ Animazione Punti** | Testo "+10" / "+20" fluttuante sopra il personaggio | 🔴 Alta | 🟡 Medio |
+| **🔥 Sistema Combo** | Moltiplicatore per depositi consecutivi (×2, ×3) | 🟡 Media | 🟡 Medio |
+| **🏆 Classifiche Locali** | Salvataggio dei migliori 10 punteggi in locale | 🟡 Media | 🟢 Basso |
+| **💥 Penalità Errore** | -10 punti per deposito nel bidone sbagliato | 🟢 Bassa | 🟢 Basso |
+| **💪 Power-up** | Oggetti bonus che raddoppiano i punti temporaneamente | 🟢 Bassa | 🔴 Alto |
+
+---
+
+<p align="center"><strong>Documento Tecnico - GreenPixel v1.0</strong></p>
+<p align="center">Made with ❤️ for a cleaner world</p>
