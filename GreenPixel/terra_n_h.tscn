@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dejugs0yoqu8e"]
+
+[ext_resource type="Script" uid="uid://ba87otbke7567" path="res://terra_n_h.gd" id="1_0mugr"]
+[ext_resource type="Texture2D" uid="uid://c0xlu4mlwcbuf" path="res://terra_nohitboxs.png" id="1_w0ot1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wkmb1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4jrk"]
+size = Vector2(16, 16)
+
+[node name="terra_n_h" type="Area2D"]
+script = ExtResource("1_0mugr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wkmb1")
+
+[node name="TerraNohitboxs" type="Sprite2D" parent="."]
+position = Vector2(144, 127)
+texture = ExtResource("1_w0ot1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.08616e-07, -1)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_w4jrk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

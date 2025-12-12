@@ -1,0 +1,249 @@
+[gd_scene load_steps=19 format=3 uid="uid://durya82v6ie5t"]
+
+[ext_resource type="Texture2D" uid="uid://b0as4d0o75hj8" path="res://assets/cielo.png" id="1_filws"]
+[ext_resource type="Texture2D" uid="uid://ckg221ednl7g8" path="res://assets/terra def.png" id="2_5b07r"]
+[ext_resource type="Script" path="res://scripts/character_body_2d.gd" id="2_nlfq7"]
+[ext_resource type="Texture2D" uid="uid://dsdebrxcwg7j3" path="res://assets/player.png" id="2_q4hev"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0ned"]
+atlas = ExtResource("2_q4hev")
+region = Rect2(0, 128, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6slxx"]
+atlas = ExtResource("2_q4hev")
+region = Rect2(33, 128, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vileq"]
+atlas = ExtResource("2_q4hev")
+region = Rect2(0, 160, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhjhv"]
+atlas = ExtResource("2_q4hev")
+region = Rect2(33, 160, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbn31"]
+atlas = ExtResource("2_q4hev")
+region = Rect2(0, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aiu52"]
+atlas = ExtResource("2_q4hev")
+region = Rect2(33, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mt5s3"]
+atlas = ExtResource("2_q4hev")
+region = Rect2(66, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33is8"]
+atlas = ExtResource("2_q4hev")
+region = Rect2(99, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o71e6"]
+atlas = ExtResource("2_q4hev")
+region = Rect2(132, 32, 33, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kdpc"]
+atlas = ExtResource("2_q4hev")
+region = Rect2(165, 32, 33, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4urf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0ned")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6slxx")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vileq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhjhv")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbn31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aiu52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mt5s3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33is8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o71e6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kdpc")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bkhga"]
+radius = 12.0
+height = 34.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1016v"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m1pnr"]
+distance = -402.0
+
+[node name="scena" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-365.0]
+
+[node name="sfondo" type="TextureRect" parent="."]
+offset_right = 1211.0
+offset_bottom = 647.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("1_filws")
+
+[node name="terra" type="TextureRect" parent="sfondo"]
+offset_top = 521.0
+offset_right = 173.0
+offset_bottom = 647.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra2" type="TextureRect" parent="sfondo/terra"]
+offset_top = -123.0
+offset_right = 173.0
+offset_bottom = 3.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra3" type="TextureRect" parent="sfondo/terra/terra2"]
+offset_left = 173.0
+offset_right = 346.0
+offset_bottom = 126.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra4" type="TextureRect" parent="sfondo/terra/terra2/terra3"]
+offset_top = 123.0
+offset_right = 173.0
+offset_bottom = 249.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra5" type="TextureRect" parent="sfondo/terra/terra2/terra3/terra4"]
+offset_left = 173.0
+offset_right = 346.0
+offset_bottom = 126.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra7" type="TextureRect" parent="sfondo/terra/terra2/terra3/terra4/terra5"]
+offset_left = 346.0
+offset_right = 519.0
+offset_bottom = 126.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra6" type="TextureRect" parent="sfondo/terra/terra2/terra3/terra4/terra5/terra7"]
+offset_left = -173.0
+offset_top = -123.0
+offset_bottom = 3.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra8" type="TextureRect" parent="sfondo/terra/terra2/terra3/terra4/terra5/terra7/terra6"]
+offset_top = 123.0
+offset_right = 173.0
+offset_bottom = 249.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra9" type="TextureRect" parent="sfondo/terra/terra2/terra3/terra4/terra5/terra7/terra6/terra8"]
+offset_left = 173.0
+offset_top = -123.0
+offset_right = 346.0
+offset_bottom = 3.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra10" type="TextureRect" parent="sfondo/terra/terra2/terra3/terra4/terra5/terra7/terra6/terra8/terra9"]
+offset_left = -346.0
+offset_right = -173.0
+offset_bottom = 126.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra11" type="TextureRect" parent="sfondo/terra/terra2/terra3/terra4/terra5/terra7/terra6/terra8/terra9/terra10"]
+offset_left = 519.0
+offset_top = 123.0
+offset_right = 692.0
+offset_bottom = 249.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra12" type="TextureRect" parent="sfondo/terra/terra2/terra3/terra4/terra5/terra7/terra6/terra8/terra9/terra10/terra11"]
+offset_top = -123.0
+offset_right = 173.0
+offset_bottom = 3.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra13" type="TextureRect" parent="sfondo/terra/terra2/terra3/terra4/terra5/terra7/terra6/terra8/terra9/terra10/terra11/terra12"]
+offset_left = 173.0
+offset_right = 346.0
+offset_bottom = 126.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="terra14" type="TextureRect" parent="sfondo/terra/terra2/terra3/terra4/terra5/terra7/terra6/terra8/terra9/terra10/terra11/terra12/terra13"]
+offset_top = 124.0
+offset_right = 173.0
+offset_bottom = 250.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_5b07r")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("2_nlfq7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(69, 120)
+scale = Vector2(1.60227, 1.50781)
+sprite_frames = SubResource("SpriteFrames_g4urf")
+animation = &"run"
+frame_progress = 0.347359
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(69, 127)
+shape = SubResource("CapsuleShape2D_bkhga")
+
+[node name="floor" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_1016v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
+shape = SubResource("WorldBoundaryShape2D_m1pnr")

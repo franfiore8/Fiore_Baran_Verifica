@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://ru4v7g7deud3"]
+
+[ext_resource type="Texture2D" uid="uid://m4wduw70c6d4" path="res://assets/riufiuto verde.png" id="1_kdrgr"]
+[ext_resource type="Script" uid="uid://hqbp1ga80cs7" path="res://sacco_verde.gd" id="1_vj783"]
+[ext_resource type="Script" uid="uid://dt3jy7vysrlk" path="res://collision_shape_2d.gd" id="3_4ydlm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qgcwb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcxid"]
+size = Vector2(16, 16)
+
+[node name="sacco verde" type="Area2D"]
+script = ExtResource("1_vj783")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qgcwb")
+
+[node name="RiufiutoVerde" type="Sprite2D" parent="."]
+position = Vector2(-8, 8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_kdrgr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 8)
+shape = SubResource("RectangleShape2D_hcxid")
+script = ExtResource("3_4ydlm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

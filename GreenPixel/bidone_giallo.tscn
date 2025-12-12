@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct4etwtditatd"]
+
+[ext_resource type="Texture2D" uid="uid://by445sf0j1jkg" path="res://bidoneGiallo.png" id="1_fsoea"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_31rqx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1p06"]
+size = Vector2(33, 31)
+
+[node name="Bidone Giallo" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_31rqx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-15.5, 15.5)
+shape = SubResource("RectangleShape2D_d1p06")
+
+[node name="BidoneGiallo" type="Sprite2D" parent="."]
+position = Vector2(-15, 15)
+texture = ExtResource("1_fsoea")

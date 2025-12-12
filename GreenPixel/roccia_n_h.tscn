@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://qtn0q6reqvaj"]
+
+[ext_resource type="Texture2D" uid="uid://sagepxtroj4y" path="res://assets/roccia_nohitbox.png" id="1_1yweu"]
+[ext_resource type="Script" uid="uid://cnj4tdhlmucgm" path="res://roccia_n_h.gd" id="1_ja02j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ykgnt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2d8c4"]
+size = Vector2(16, 16)
+
+[node name="roccia_n_h" type="Area2D"]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_ja02j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ykgnt")
+
+[node name="RocciaNohitbox" type="Sprite2D" parent="."]
+position = Vector2(275, 159)
+texture = ExtResource("1_1yweu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(99, 31)
+shape = SubResource("RectangleShape2D_2d8c4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bskcqbes20w5"]
+
+[ext_resource type="Script" uid="uid://cmsbn11o30amy" path="res://scene/bbbbbbbbbb.gd" id="1_jxkob"]
+[ext_resource type="Texture2D" uid="uid://bjoj2ev5dd3d7" path="res://assets/rifiuto blu.png" id="1_ks8r4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jwllx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nhe2"]
+size = Vector2(16, 17)
+
+[node name="Sacco_blu" type="Area2D"]
+collision_mask = 7
+script = ExtResource("1_jxkob")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jwllx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 6
+visibility_layer = 6
+position = Vector2(-8, 8.5)
+shape = SubResource("RectangleShape2D_5nhe2")
+
+[node name="RifiutoBlu" type="Sprite2D" parent="."]
+position = Vector2(-8, 8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ks8r4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

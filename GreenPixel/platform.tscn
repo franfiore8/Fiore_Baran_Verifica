@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5qvmrr5es5e3"]
+
+[ext_resource type="Texture2D" uid="uid://di2x2mqa3iofs" path="res://erba_starana.png" id="1_4l8qk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6vyo"]
+size = Vector2(16, 16)
+
+[node name="platform" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4l8qk")
+region_enabled = true
+region_rect = Rect2(47.2997, 15.0134, 17.628, 18.2808)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a6vyo")
+one_way_collision = true
+one_way_collision_margin = 41.5
