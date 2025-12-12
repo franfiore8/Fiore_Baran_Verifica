@@ -33,7 +33,6 @@ Padroneggiare i movimenti del vostro eroe è fondamentale per un riciclo efficie
 | **W**        | *(Attualmente non assegnato, riservato per future interazioni)*     |
 | **A**        | Muovi il personaggio a **sinistra**                                 |
 | **D**        | Muovi il personaggio a **destra**                                   |
-| **S**        | **Interagisci** con oggetti o porta a termine azioni specifiche     |
 | **Spazio**   | **Salta** tra le piattaforme e supera gli ostacoli                  |
 
 ---
