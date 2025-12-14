@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.15.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>GreenPixel:  File sorgente GreenPixel/new_script.gd</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">GreenPixel
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.15.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Cerca',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('new__script_8gd_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Caricamento in corso...</div>
+<div class="SRStatus" id="Searching">Ricerca in corso...</div>
+<div class="SRStatus" id="NoMatches">Nessun risultato</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">new_script.gd</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="new__script_8gd.html">Vai alla documentazione di questo file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="namespacenew__script.html">    1</a></span>extends CharacterBody2D</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="namespacenew__script.html#a4db93685d5145dff44ec3e0478cecb93">    3</a></span>const JUMP_VELOCITY = -300.0</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="namespacenew__script.html#af30499298765fa3061d64e39ef6f5e2a">    4</a></span>const JUMP_2=-220</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="namespacenew__script.html#aebc6f14572032abc77851f4900c4f339">    5</a></span>var VELOCITY:float= 2</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="namespacenew__script.html#ac63ba32e778846c95f75f67b5a2ec029">    6</a></span>var count_jump=0</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="namespacenew__script.html#a727723243871d7bd187710ee9ecc4602">    7</a></span>var max_jump=2</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="namespacenew__script.html#aa9907d7a6c211081f91197d65daf56d0">    8</a></span>var position1=0</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="namespacenew__script.html#aa68e07a196f3c43b36b786bdbdc68255">    9</a></span>var max_position=2</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="namespacenew__script.html#ac5bc722165197d96e5af487490e76ea8">   10</a></span>var max_position2=1</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>func _physics_process(delta: float) -&gt; void:</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="comment"># Add the gravity.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordflow">if</span> <span class="keywordflow">not</span> is_on_floor():   </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        velocity += get_gravity() * delta</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="comment"># Handle jump.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordflow">if</span> Input.is_action_just_pressed(<span class="stringliteral">&quot;ui_accept&quot;</span>) : <span class="comment">#SALTO DA FERMO</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="comment">#position.x=0 check point</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">if</span> is_on_floor() :</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="namespacenew__script.html#aeea9647bdae3acee869b8dc08d1f5036">   20</a></span>            velocity.y = JUMP_VELOCITY</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            $Animazione.play(<span class="stringliteral">&quot;jump&quot;</span>)        </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            count_jump=1    </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keywordflow">elif</span> count_jump&lt;max_jump:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            $Animazione.play(<span class="stringliteral">&quot;jump&quot;</span>)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            velocity.y = JUMP_2</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            count_jump+=1</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    move_and_slide()</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment"># CORSA</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>func _process(delta):</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="namespacenew__script.html#a033c0c589d2bc172feb96c5dca8e611d">   32</a></span>        var movimento= Vector2.ZERO</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordflow">if</span> is_on_floor() : <span class="comment">#MOVIMENTO A TERRA A DESTRA E A SINISTRA</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <span class="keywordflow">if</span> Input.is_action_pressed(<span class="stringliteral">&quot;ui_right&quot;</span>):</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                movimento.x +=1</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                $Animazione.play(<span class="stringliteral">&quot;run&quot;</span>) </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            <span class="keywordflow">elif</span>  Input.is_action_pressed(<span class="stringliteral">&quot;ui_left&quot;</span>):</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                movimento.x -=1</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                $Animazione.play(<span class="stringliteral">&quot;reverse_run&quot;</span>) </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                $Animazione.play(<span class="stringliteral">&quot;stop&quot;</span>)        </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            movimento= movimento.normalized()</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            move_and_collide(movimento*VELOCITY)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">else</span> : <span class="comment">#MOVIMENTO IN ARIA DESTRA E SINISTRA</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            position1+=1</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keywordflow">if</span> Input.is_action_pressed(<span class="stringliteral">&quot;ui_right&quot;</span>):</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                movimento.x +=1</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                $Animazione.play(<span class="stringliteral">&quot;jump&quot;</span>)    </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <span class="keywordflow">elif</span>  Input.is_action_pressed(<span class="stringliteral">&quot;ui_left&quot;</span>):</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                movimento.x -=1</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                $Animazione.play(<span class="stringliteral">&quot;reverse_jump&quot;</span>)    </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                $Animazione.play(<span class="stringliteral">&quot;stop&quot;</span>)        </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            movimento= movimento.normalized()</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            move_and_collide(movimento*VELOCITY)</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    </div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_335c3954a73037faff5fdb566fd9cbb9.html">GreenPixel</a></li><li class="navelem"><a href="new__script_8gd.html">new_script.gd</a></li>
+    <li class="footer">Generato da <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
+  </ul>
+</div>
+</body>
+</html>
