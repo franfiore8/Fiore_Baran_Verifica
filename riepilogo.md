@@ -5,18 +5,18 @@
 
 ## 👥 Composizione del Team  
 
-Il progetto **GreenPixel** è stato è stato realizzato in modo autonomo da:**  
+Il progetto **GreenPixel** è stato è stato realizzato da:  
 
 | Nome              | Ruolo nel Progetto                          | Contributo principale                                                                 |
 | ----------------- | ------------------------------------------- | ------------------------------------------------------------------------------------- |
 | **Fiore Francesco** | Sviluppatore, Game Designer, Documentatore, Tester, Gestore del Repository | Progettazione, implementazione, testing, documentazione, gestione di tutto il workflow di sviluppo. |
+| **Baran Ernest** | Documentatore, Tester, Gestore del Repository | Documentazione, testing |
+
 
 
 ---
 
-## 📋 Divisione dei Compiti  
-
-Poiché il lavoro è stato svolto in modo autonomo, **tutti i compiti sono stati gestiti direttamente da Fiore Francesco**.  
+## 📋 Divisione dei Compiti    
 
 ### **1. Feature 1: Sistema di Cronometro di Gioco**  
 *(Branch: `feature/cronometro`)*  
