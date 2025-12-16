@@ -84,3 +84,4 @@ Il potenziale di GreenPixel è enorme! Ecco alcune delle idee che stiamo esplora
 Questo progetto è il frutto del lavoro collaborativo per la verifica GPO 2:
 
 *   **Fiore Francesco** – Sviluppatore / Game Designer
+*   **Baran Ernest** – Documentatore / Tester
