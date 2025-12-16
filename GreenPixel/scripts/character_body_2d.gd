@@ -1,59 +1,84 @@
+## @file character_body_2d.gd
+# @brief Script principale del personaggio giocante.
+# @author ernest baran
+# @details Gestisce il movimento, i salti, la gravità e le animazioni del personaggio.
+
+## Classe che estende CharacterBody2D per il controllo del personaggio.
 extends CharacterBody2D
 
-const JUMP_VELOCITY = -300.0
-const JUMP_2=-220
-var VELOCITY:float= 2
-var count_jump=0
-var max_jump=2
-var position1=0
-var max_position=2
-var max_position2=1
+## Velocità di salto iniziale (valore negativo perché Godot usa Y verso il basso).
+const JUMP_VELOCITY: float = -300.0
 
+## Velocità di salto secondario (doppio salto).
+const JUMP_2: float = -220.0
+
+## Moltiplicatore di velocità per il movimento orizzontale.
+var VELOCITY: float = 2.0
+
+## Contatore dei salti effettuati (per gestire il doppio salto).
+var count_jump: int = 0
+
+## Numero massimo di salti consentiti (2 = doppio salto).
+var max_jump: int = 2
+
+## Variabile temporanea per logiche di movimento (non usata attualmente).
+var position1: int = 0
+
+## Limite massimo per position1 (non usato attualmente).
+var max_position: int = 2
+
+## Limite massimo alternativo per position1 (non usato attualmente).
+var max_position2: int = 1
+
+## @brief Gestisce la fisica del personaggio (gravità, salti, movimento).
+# @param delta Tempo trascorso dall'ultimo frame (in secondi).
+# @return void
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor(): 	
-		velocity += get_gravity() * delta
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") : #SALTO DA FERMO
-		#position.x=0 check point
-		if is_on_floor() :
-			velocity.y = JUMP_VELOCITY
-			$Animazione.play("jump")		
-			count_jump=1	
-		elif count_jump<max_jump:
-			$Animazione.play("jump")
-			velocity.y = JUMP_2
-			count_jump+=1
-				
-	move_and_slide()
-	
-	# CORSA
-func _process(delta):
-		var movimento= Vector2.ZERO
-		if is_on_floor() : #MOVIMENTO A TERRA A DESTRA E A SINISTRA
-			if Input.is_action_pressed("ui_right"):
-				movimento.x +=1
-				$Animazione.play("run")	
-			elif  Input.is_action_pressed("ui_left"):
-				movimento.x -=1
-				$Animazione.play("reverse_run")	
-			else:
-				$Animazione.play("stop")		
-			movimento= movimento.normalized()
-			move_and_collide(movimento*VELOCITY)
-		else : #MOVIMENTO IN ARIA DESTRA E SINISTRA
-			position1+=1
-			if Input.is_action_pressed("ui_right"):
-				movimento.x +=1
-				$Animazione.play("jump")	
-			elif  Input.is_action_pressed("ui_left"):
-				movimento.x -=1
-				$Animazione.play("reverse_jump")	
-			else:
-				$Animazione.play("stop")		
-			movimento= movimento.normalized()
-			move_and_collide(movimento*VELOCITY)
-			
-			
-	
-	
+    # Applica la gravità se il personaggio non è a terra.
+    if not is_on_floor():
+        velocity += get_gravity() * delta
+
+    # Gestione del salto.
+    if Input.is_action_just_pressed("ui_accept"):  # Salto (tasto spazio/enter)
+        if is_on_floor():  # Salto da terra
+            velocity.y = JUMP_VELOCITY
+            $Animazione.play("jump")
+            count_jump = 1
+        elif count_jump < max_jump:  # Doppio salto
+            $Animazione.play("jump")
+            velocity.y = JUMP_2
+            count_jump += 1
+
+    move_and_slide()
+
+## @brief Gestisce il movimento orizzontale del personaggio.
+# @param delta Tempo trascorso dall'ultimo frame (in secondi).
+# @return void
+func _process(delta: float) -> void:
+    var movimento: Vector2 = Vector2.ZERO
+
+    if is_on_floor():  # Movimento a terra
+        if Input.is_action_pressed("ui_right"):
+            movimento.x += 1
+            $Animazione.play("run")
+        elif Input.is_action_pressed("ui_left"):
+            movimento.x -= 1
+            $Animazione.play("reverse_run")
+        else:
+            $Animazione.play("stop")
+
+        movimento = movimento.normalized()
+        move_and_collide(movimento * VELOCITY)
+    else:  # Movimento in aria
+        position1 += 1
+        if Input.is_action_pressed("ui_right"):
+            movimento.x += 1
+            $Animazione.play("jump")
+        elif Input.is_action_pressed("ui_left"):
+            movimento.x -= 1
+            $Animazione.play("reverse_jump")
+        else:
+            $Animazione.play("stop")
+
+        movimento = movimento.normalized()
+        move_and_collide(movimento * VELOCITY)
